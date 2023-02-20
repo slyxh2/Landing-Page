@@ -1,82 +1,57 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Heading, Text, Box, Image, Button, Link } from 'theme-ui';
-import SectionHeader from 'components/section-header';
-import Rating from 'components/rating';
-import ButtonGroup from 'components/button-group';
+// import { jsx, Container, Heading, Text, Box, Image } from 'theme-ui';
+import { jsx, Container, Heading, Text, Box, Image } from 'theme-ui';
+import SectionHeader from '../components/section-header';
+import Rating from '../components/rating';
+import ButtonGroup from '../components/button-group';
 import Carousel from 'react-multi-carousel';
 
-import Avatar1 from 'assets/testimonial/avatar1.png';
-import Avatar2 from 'assets/testimonial/avatar2.png';
-import Avatar3 from 'assets/testimonial/avatar3.png';
-import Avatar4 from 'assets/testimonial/avatar4.png';
+import Avatar1 from '../assets/testimonial/avatar1.png';
+import Avatar2 from '../assets/testimonial/avatar2.png';
+import Avatar3 from '../assets/testimonial/avatar3.png';
+import Avatar4 from '../assets/testimonial/avatar4.png';
 
-import Website_trungtamxuctien from 'assets/testimonial/website_trungtamxuctien.jpg';
-import Website_hoinongdan from 'assets/testimonial/website_hoinongdan.jpg';
-import Website_truyenthongsk from 'assets/testimonial/website_truyenthongsk.jpg';
-import Website_trungtamkhcn from 'assets/testimonial/website_trungtamkhcn.jpg';
-
-/* import Link from 'next/link';
- */
 const data = [
   {
     id: 1,
-    title: 'Trung tâm Xúc tiến đầu tư',
-    imgSrc: Website_trungtamxuctien,
+    title: 'Modern look & trending design',
     description:
       'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
     avatar: Avatar1,
     name: 'Denny Hilguston',
     designation: '@denny.hil',
     review: 4,
-    link: 'https://patrickhuang.netlify.app/',
   },
   {
     id: 2,
-    title: 'Hội Nông dân',
-    imgSrc: Website_hoinongdan,
+    title: 'Design Quality & performance',
     description:
       'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
     avatar: Avatar2,
     name: 'Denny Hilguston',
     designation: '@denny.hil',
     review: 5,
-    link: 'https://patrickhuang.netlify.app/',
   },
   {
     id: 3,
-    title: 'Trung tâm Truyền thông GDSK',
-    imgSrc: Website_truyenthongsk,
+    title: 'Layout and organized layers',
     description:
       'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
     avatar: Avatar3,
     name: 'Denny Hilguston',
     designation: '@denny.hil',
     review: 5,
-    link: 'https://patrickhuang.netlify.app/',
   },
   {
     id: 4,
-    title: 'Trung tâm Ứng dụng tiến bộ KHCN',
-    imgSrc: Website_trungtamkhcn,
+    title: 'Modern look & trending design',
     description:
       'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
     avatar: Avatar4,
     name: 'Denny Hilguston',
     designation: '@denny.hil',
     review: 4,
-    link: 'https://patrickhuang.netlify.app/',
-  },
-  {
-    id: 5,
-    title: 'Trung tâm Ứng dụng tiến bộ KHCN',
-    imgSrc: Website_trungtamkhcn,
-    description:
-      'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-    avatar: Avatar4,
-    name: 'Denny Hilguston',
-    designation: '@denny.hil',
-    review: 4,
-    link: 'https://patrickhuang.netlify.app/',
   },
 ];
 
@@ -103,52 +78,52 @@ const responsive = {
   },
 };
 
-const carouselParams = {
-  additionalTransfrom: 0,
-  arrows: false,
-  // autoPlaySpeed: 3000,
-  centerMode: false,
-  className: "",
-  containerClass: "carousel-container",
-  customButtonGroup: <ButtonGroup />,
-  dotListClass: "",
-  draggable: false,
-  focusOnSelect: false,
-  infinite: false,
-  itemClass: "",
-  keyBoardControl: true,
-  minimumTouchDrag: 80,
-  renderButtonGroupOutside: true,
-  renderDotsOutside: false,
-  responsive: responsive,
-  showDots: false,
-  sliderClass: "",
-  slidesToSlide: 1,
-}
-
 export default function TestimonialCard() {
   return (
     <section id="product" sx={{ variant: 'section.testimonial' }}>
       <Container css={{ textAlign: 'center' }}>
-        <SectionHeader
-          slogan="Products"
-          title="Sản phẩm của chúng tôi"
-        />
+        <SectionHeader slogan="Testimonial" title="Meet Client Satisfaction" />
       </Container>
       <Box sx={styles.carouselWrapper}>
-        <Carousel {...carouselParams}>
+        <Carousel
+          additionalTransfrom={0}
+          arrows={false}
+          autoPlaySpeed={3000}
+          centerMode={false}
+          className=""
+          containerClass="carousel-container"
+          customButtonGroup={<ButtonGroup />}
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          infinite={true}
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={80}
+          renderButtonGroupOutside
+          renderDotsOutside={false}
+          responsive={responsive}
+          showDots={false}
+          sliderClass=""
+          slidesToSlide={1}
+        >
           {data.map((item) => (
-            <Box sx={styles.reviewCard} key={item.id}>
-              {/* <Rating rating={item.review} /> */}
-              <Heading as="h3" sx={styles.title}>{item.title}</Heading>
+            <Box sx={styles.reviewCard} key={`testimonial--key${item.id}`}>
+              <Rating rating={item.review} />
+              <Heading as="h3" sx={styles.title}>
+                {item.title}
+              </Heading>
               <Text sx={styles.description}>{item.description}</Text>
-              <Image src={item.imgSrc} />
               <div className="card-footer">
-
-                <Link href={item.link} variant="bold">
-                  Xem chi tiết
-                </Link>
-
+                <div className="image">
+                  <Image src={item.avatar} alt="Client Image" />
+                </div>
+                <div className="reviewer-info">
+                  <Heading as="h4" sx={styles.heading}>
+                    {item.name}
+                  </Heading>
+                  <Text sx={styles.designation}>{item.designation}</Text>
+                </div>
               </div>
             </Box>
           ))}
